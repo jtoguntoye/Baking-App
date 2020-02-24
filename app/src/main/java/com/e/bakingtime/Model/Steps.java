@@ -1,21 +1,70 @@
 package com.e.bakingtime.Model;
 
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Expose;
+
 
 public class Steps {
 
-    @SerializedName("id")
-    public int stepsId;
 
-    @SerializedName("shortDescription")
-    public String ShortDescription;
+        @SerializedName("id")
+        @Expose
+        private Integer id;
 
-    @SerializedName("description")
-    public String description;
+        @SerializedName("shortDescription")
+        @Expose
+        private String shortDescription;
 
-    @SerializedName("videoURL")
-    public String videoURL;
+        @SerializedName("description")
+        @Expose
+        private String description;
 
-    @SerializedName("thumbnailURL")
-    public String thumbnailURL;
-}
+        @SerializedName("videoURL")
+        @Expose
+        private String videoURL;
+
+        @SerializedName("thumbnailURL")
+        @Expose
+        private String thumbnailURL;
+
+        public Integer getId() {
+            return id;
+        }
+
+         public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getShortDescription() {
+            return shortDescription;
+        }
+
+        public void setShortDescription(String shortDescription) {
+            this.shortDescription = shortDescription;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getVideoURL() {
+            return videoURL;
+        }
+
+        public void setVideoURL(String videoURL) {
+            this.videoURL = videoURL;
+        }
+
+        public String getThumbnailURL() {
+            return thumbnailURL;
+        }
+
+        public void setThumbnailURL(String thumbnailURL) {
+            this.thumbnailURL = thumbnailURL;
+        }
+
+    }

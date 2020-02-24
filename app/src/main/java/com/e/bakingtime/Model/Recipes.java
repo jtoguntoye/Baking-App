@@ -12,7 +12,7 @@ public class Recipes {
     @SerializedName("id")
     public int id;
 
-    @SerializedName("Name")
+    @SerializedName("name")
     public String recipeName;
 
     @SerializedName("ingredients")

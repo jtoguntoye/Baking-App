@@ -1,11 +1,7 @@
 package com.e.bakingtime;
 
-import android.app.Application;
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 
-import com.e.bakingtime.Model.RecipeSource;
 import com.e.bakingtime.Model.Recipes;
 
 import java.util.List;

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mRecipesList = new ArrayList<>();
-        mainActivityAdapter = new MainActivityAdapter(new ArrayList<Recipes>());
+        mainActivityAdapter = new MainActivityAdapter(new ArrayList<>());
         mRecyclerView = findViewById(R.id.recipe_recycler);
+
 
         GridLayoutManager gridLayoutManager =new GridLayoutManager(this, numOfColumns());
         mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -51,21 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void getRecipes(){
 
-        mainActivityModel.getRecipes().observe(this, new Observer<List<Recipes>>() {
-            @Override
-            public void onChanged(List<Recipes> recipesList) {
-                mainActivityAdapter.setAdapter(recipesList);
-                mRecipesList = recipesList;
-                Log.d("Recipe size:", String.valueOf((mRecipesList.size())));
+        mainActivityModel.getRecipes().observe(this, (List<Recipes> recipesList) -> {
+            mainActivityAdapter.setAdapter(recipesList);
+            mRecipesList = recipesList;
+            Log.d("Recipe size:", String.valueOf((mRecipesList.size())));
 
-            }
         });
     }
 
     private int numOfColumns() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int widthDivider = 400;
+        int widthDivider = 700;
         int width = displayMetrics.widthPixels;
         int numColumns = width/widthDivider;
         if(numColumns < 2)return 1;

@@ -2,14 +2,43 @@ package com.e.bakingtime.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import com.google.gson.annotations.Expose;
+
+
 public class Ingredients {
 
     @SerializedName("quantity")
-    public int quantity;
-
+    @Expose
+    private double quantity;
     @SerializedName("measure")
-    public String measure;
-
+    @Expose
+    private String measure;
     @SerializedName("ingredient")
-    public String ingredient;
+    @Expose
+    private String ingredient;
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
+    }
+
 }
