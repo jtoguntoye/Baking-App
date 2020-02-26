@@ -6,21 +6,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.bakingtime.Model.Recipes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapter.RecipeViewHolder> {
 
     private TextView recipeTextView;
      private List<Recipes> recipesList;
+     private RecipeClickHandler mRecipeClickHandler;
 
-      MainActivityAdapter(List<Recipes> recipesList){
+      MainActivityAdapter(List<Recipes> recipesList, RecipeClickHandler recipeClickHandler){
          this.recipesList = recipesList;
+         mRecipeClickHandler = recipeClickHandler;
     }
 
     void setAdapter(List<Recipes> recipesList1){
@@ -51,7 +51,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     }
 
 
-    public  class RecipeViewHolder extends RecyclerView.ViewHolder{
+    public  class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
 
@@ -59,10 +59,23 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
             super(itemView);
         recipeTextView = itemView.findViewById(R.id.recipe_text_view);
 
+        itemView.setOnClickListener(this);
+
         }
 
         public void bind(Recipes recipes) {
             recipeTextView.setText(recipes.getRecipeName());
         }
+
+        @Override
+        public void onClick(View view) {
+            mRecipeClickHandler.onRecipeClickHandler(getAdapterPosition());
+
+        }
+    }
+
+    //create a click listener to handle item clickon the recycler view items
+        public  interface RecipeClickHandler {
+          void onRecipeClickHandler(int position);
     }
 }

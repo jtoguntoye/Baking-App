@@ -1,21 +1,28 @@
 package com.e.bakingtime.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import com.google.gson.annotations.Expose;
 
 
-public class Ingredients {
+public class Ingredients implements Parcelable {
 
     @SerializedName("quantity")
     @Expose
     private double quantity;
+
     @SerializedName("measure")
     @Expose
     private String measure;
+
     @SerializedName("ingredient")
     @Expose
-    private String ingredient;
+    private String ingredientName;
+
+
 
     public double getQuantity() {
         return quantity;
@@ -33,12 +40,43 @@ public class Ingredients {
         this.measure = measure;
     }
 
-    public String getIngredient() {
-        return ingredient;
+    public String getIngredientName() {
+        return ingredientName;
     }
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
+    public final static Parcelable.Creator<Ingredients> CREATOR = new Creator<Ingredients>() {
+        @Override
+        public Ingredients createFromParcel(Parcel parcel) {
+            return new Ingredients(parcel);
+        }
+
+        @Override
+        public Ingredients[] newArray(int size) {
+            return new Ingredients[size];
+        }
+    };
+
+    protected Ingredients(Parcel parcel) {
+       measure= parcel.readString();
+       ingredientName = parcel.readString();
+       quantity = parcel.readDouble();
+
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(measure);
+        parcel.writeString(ingredientName);
+        parcel.writeDouble(quantity);
+
+    }
 }

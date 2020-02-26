@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Baking Time</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_detail_recipe">DetailRecipe</string>
+    <string name="Ingredients">Ingredients:</string>
+    <string name="Baking_steps">Baking Steps:</string>
 </resources>

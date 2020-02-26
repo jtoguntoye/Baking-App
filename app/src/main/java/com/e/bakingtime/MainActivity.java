@@ -1,5 +1,6 @@
 package com.e.bakingtime;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.e.bakingtime.Model.Recipes;
@@ -22,12 +23,13 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityAdapter.RecipeClickHandler {
 
     private List<Recipes> mRecipesList;
     private RecyclerView mRecyclerView;
     private MainActivityAdapter mainActivityAdapter;
     private MainActivityModel mainActivityModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mRecipesList = new ArrayList<>();
-        mainActivityAdapter = new MainActivityAdapter(new ArrayList<>());
+        mainActivityAdapter = new MainActivityAdapter(new ArrayList<>(), this);
         mRecyclerView = findViewById(R.id.recipe_recycler);
 
 
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mainActivityAdapter);
 
         mainActivityModel = new MainActivityModel(this.getApplication());
+
 
         getRecipes();
 
@@ -90,5 +93,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // recipe itemClick callback method implementation
+    @Override
+    public void onRecipeClickHandler(int position) {
+        Intent recipeClickIntent = new Intent(this, RecipeDetailActivity.class);
+        recipeClickIntent.putExtra(RecipeDetailActivity.PARCELED_RECIPE, mRecipesList.get(position));
+        startActivity(recipeClickIntent);
     }
 }

@@ -1,10 +1,15 @@
 package com.e.bakingtime.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Expose;
 
+import retrofit2.http.PATCH;
 
-public class Steps {
+
+public class Steps implements Parcelable {
 
 
         @SerializedName("id")
@@ -67,4 +72,43 @@ public class Steps {
             this.thumbnailURL = thumbnailURL;
         }
 
+
+        public static final Creator<Steps> CREATOR = new Creator<Steps>() {
+            @Override
+            public Steps createFromParcel(Parcel parcel) {
+
+                return new Steps(parcel);
+            }
+
+            @Override
+            public Steps[] newArray(int size) {
+                return new Steps[size];
+            }
+        };
+
+
+
+        protected Steps(Parcel parcel){
+
+            id = parcel.readInt();
+            shortDescription = parcel.readString();
+            description  = parcel.readString();
+            videoURL = parcel.readString();
+            thumbnailURL = parcel.readString();
+        }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+    parcel.writeInt(id);
+    parcel.writeString(shortDescription);
+    parcel.writeString(description);
+    parcel.writeString(videoURL);
+    parcel.writeString(thumbnailURL);
+    }
+}
