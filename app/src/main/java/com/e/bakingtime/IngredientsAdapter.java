@@ -8,19 +8,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.e.bakingtime.Model.Ingredients;
+import com.e.bakingtime.Model.RecipeIngredients;
 
 import java.util.List;
 
 class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder> {
 
-    private List<Ingredients> ingredientList;
+    private List<RecipeIngredients> ingredientList;
 
-    public IngredientsAdapter(List<Ingredients> ingredientList) {
+    public IngredientsAdapter(List<RecipeIngredients> ingredientList) {
         this.ingredientList = ingredientList;
     }
 
-    void setIngredientList(List<Ingredients> ingredientList){
+    void setIngredientList(List<RecipeIngredients> ingredientList){
         this.ingredientList = ingredientList;
     }
 
@@ -59,8 +59,8 @@ class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.Ingredi
             ingredientName = itemView.findViewById(R.id.ingredients_text);
         }
 
-        private void bind(Ingredients ingredients){
-            ingredientName.setText(ingredients.getIngredientName());
+        private void bind(RecipeIngredients recipeIngredients){
+            ingredientName.setText(recipeIngredients.getIngredientName());
         }
     }
 

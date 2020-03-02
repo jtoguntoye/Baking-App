@@ -22,10 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:padding="16dp"
         tools:text="cheese"
         android:textSize="17sp"
         android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceListItem"
         />
 
 </LinearLayout>

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Expose;
 
 
-public class Ingredients implements Parcelable {
+public class RecipeIngredients implements Parcelable {
 
     @SerializedName("quantity")
     @Expose
@@ -48,19 +48,19 @@ public class Ingredients implements Parcelable {
         this.ingredientName = ingredientName;
     }
 
-    public final static Parcelable.Creator<Ingredients> CREATOR = new Creator<Ingredients>() {
+    public final static Parcelable.Creator<RecipeIngredients> CREATOR = new Creator<RecipeIngredients>() {
         @Override
-        public Ingredients createFromParcel(Parcel parcel) {
-            return new Ingredients(parcel);
+        public RecipeIngredients createFromParcel(Parcel parcel) {
+            return new RecipeIngredients(parcel);
         }
 
         @Override
-        public Ingredients[] newArray(int size) {
-            return new Ingredients[size];
+        public RecipeIngredients[] newArray(int size) {
+            return new RecipeIngredients[size];
         }
     };
 
-    protected Ingredients(Parcel parcel) {
+    protected RecipeIngredients(Parcel parcel) {
        measure= parcel.readString();
        ingredientName = parcel.readString();
        quantity = parcel.readDouble();

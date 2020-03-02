@@ -8,8 +8,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.SkipCallbackExecutor;
-
 public class Recipes implements Parcelable {
 
 
@@ -22,11 +20,11 @@ public class Recipes implements Parcelable {
     public String recipeName;
 
     @SerializedName("ingredients")
-    public List<Ingredients> ingredients =new ArrayList<>();
+    public List<RecipeIngredients> ingredients =new ArrayList<>();
 
 
     @SerializedName("steps")
-    public List<Steps> steps = new ArrayList<>();
+    public List<BakingSteps> steps = new ArrayList<>();
 
     @SerializedName("servings")
     public int servings;
@@ -52,19 +50,19 @@ public class Recipes implements Parcelable {
         this.recipeName = recipeName;
     }
 
-    public List<Ingredients> getIngredients() {
+    public List<RecipeIngredients> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredients> ingredients) {
+    public void setIngredients(List<RecipeIngredients> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public List<Steps> getSteps() {
+    public List<BakingSteps> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Steps> steps) {
+    public void setSteps(List<BakingSteps> steps) {
         this.steps = steps;
     }
 
@@ -104,8 +102,8 @@ public class Recipes implements Parcelable {
     protected Recipes(Parcel parcel){
         id = parcel.readInt();
         recipeName = parcel.readString();
-        parcel.readList(this.ingredients,Ingredients.class.getClassLoader());
-        parcel.readList(this.steps, Steps.class.getClassLoader());
+        parcel.readList(this.ingredients, RecipeIngredients.class.getClassLoader());
+        parcel.readList(this.steps, BakingSteps.class.getClassLoader());
         servings = parcel.readInt();
         imageUrl = parcel.readString();
     }

@@ -6,10 +6,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Expose;
 
-import retrofit2.http.PATCH;
 
-
-public class Steps implements Parcelable {
+public class BakingSteps implements Parcelable {
 
 
         @SerializedName("id")
@@ -73,22 +71,22 @@ public class Steps implements Parcelable {
         }
 
 
-        public static final Creator<Steps> CREATOR = new Creator<Steps>() {
+        public static final Creator<BakingSteps> CREATOR = new Creator<BakingSteps>() {
             @Override
-            public Steps createFromParcel(Parcel parcel) {
+            public BakingSteps createFromParcel(Parcel parcel) {
 
-                return new Steps(parcel);
+                return new BakingSteps(parcel);
             }
 
             @Override
-            public Steps[] newArray(int size) {
-                return new Steps[size];
+            public BakingSteps[] newArray(int size) {
+                return new BakingSteps[size];
             }
         };
 
 
 
-        protected Steps(Parcel parcel){
+        protected BakingSteps(Parcel parcel){
 
             id = parcel.readInt();
             shortDescription = parcel.readString();
