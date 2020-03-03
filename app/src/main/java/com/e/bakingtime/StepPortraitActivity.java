@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.e.bakingtime.Model.BakingSteps;
 
+import java.util.Objects;
+
 public class StepPortraitActivity extends AppCompatActivity {
 
     public static final String PARCELED_STEP = "com.e.bakingtime.PARCELED_RECIPE";
@@ -23,25 +25,22 @@ public class StepPortraitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_portrait_view_step);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        ViewStepFragment viewStepFragment = new ViewStepFragment();
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        fragmentManager.beginTransaction()
-                .add(R.id.step_container, viewStepFragment)
-                .commit();
-
-        Intent getStepIntent = getIntent();
-        step = getStepIntent.getParcelableExtra(PARCELED_STEP);
-        recipeName = getStepIntent.getStringExtra(RECIPE_NAME);
-
-        if(recipeName !=null) {
-            this.setTitle(recipeName);
+        recipeName=getIntent().getStringExtra(RECIPE_NAME);
+        if(recipeName !=null){
+        setTitle(recipeName);
         }
-        if(step != null){
-            viewStepFragment.setLongDescription(step.getDescription());
-            viewStepFragment.setVideoUrlString(step.getVideoURL());
+
+        if(savedInstanceState ==null){
+            Bundle  arguments = new Bundle();
+            arguments.putParcelable(PARCELED_STEP, getIntent().getParcelableExtra(PARCELED_STEP));
+            ViewStepFragment viewStepFragment = new ViewStepFragment();
+            viewStepFragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.step_container, viewStepFragment)
+                    .commit();
         }
+
     }
 }

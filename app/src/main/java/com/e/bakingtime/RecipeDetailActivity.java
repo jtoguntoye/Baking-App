@@ -65,7 +65,8 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
     private void setUpRecyclerView(RecyclerView detailRecyclerView) {
         detailRecyclerView.setHasFixedSize(true);
         detailRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        detailRecyclerView.setAdapter(new RecipeStepAdapter(bakingObject, mTwoPane, this));
+        RecipeStepAdapter recipeStepAdapter = new RecipeStepAdapter(bakingObject,mTwoPane,this);
+        detailRecyclerView.setAdapter(recipeStepAdapter);
     }
 
     @Override
@@ -73,7 +74,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
         if(mTwoPane){
             BakingSteps ClickedStep = (BakingSteps) bakingObject.get(position);
             Bundle arguments = new Bundle();
-            arguments.putParcelable("Step", ClickedStep);
+            arguments.putParcelable(StepPortraitActivity.PARCELED_STEP, ClickedStep);
             ViewStepFragment viewStepFragment = new ViewStepFragment();
             viewStepFragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

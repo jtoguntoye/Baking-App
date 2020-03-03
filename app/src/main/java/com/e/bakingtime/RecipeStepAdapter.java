@@ -120,6 +120,8 @@ class RecipeStepAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemView);
 
             stepsText = itemView.findViewById(R.id.steps_text);
+
+            itemView.setOnClickListener(this);
         }
 
         private void bind(BakingSteps step) {
