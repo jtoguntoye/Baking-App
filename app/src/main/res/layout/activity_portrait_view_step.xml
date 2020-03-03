@@ -20,8 +20,25 @@
     </com.google.android.material.appbar.AppBarLayout>
     <FrameLayout
         android:id="@+id/step_container"
-        android:layout_height = "match_parent"
+        android:layout_height = "wrap_content"
         android:layout_width ="match_parent">
 
     </FrameLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navigation_previous"/>
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navigation_next"/>
+    </LinearLayout>
+
 </LinearLayout>
