@@ -4,4 +4,6 @@
     <string name="title_activity_detail_recipe">DetailRecipe</string>
     <string name="Ingredients">Ingredients:</string>
     <string name="Baking_steps">Baking Steps:</string>
+    <string name="appwidget_recipe_ingredient">Recipes</string>
+    <string name="add_widget">Add widget</string>
 </resources>
