@@ -23,8 +23,6 @@ public class StepPortraitActivity extends AppCompatActivity {
     private BakingSteps step;
     private ArrayList<BakingSteps> stepsList;
     private String recipeName;
-    private  Button previousButton, nextButton;
-    private  int currentPosition;
     private ViewStepFragment viewStepFragment;
 
     @Override
@@ -37,17 +35,12 @@ public class StepPortraitActivity extends AppCompatActivity {
 
         viewStepFragment = new ViewStepFragment();
 
-        previousButton = findViewById(R.id.previous_button);
-        nextButton = findViewById(R.id.next_button);
+
 
         stepsList = getIntent().getParcelableArrayListExtra(StepPortraitActivity.PARCELED_LIST);
         Log.d("StepList size:", String.valueOf(stepsList.size()));
         step = getIntent().getParcelableExtra(StepPortraitActivity.PARCELED_STEP);
 
-        if(stepsList!=null){
-            currentPosition = getIndexOfStep(step);
-            Log.d("Position", String.valueOf(currentPosition));
-        }
 
         recipeName=getIntent().getStringExtra(RECIPE_NAME);
         if(recipeName !=null){
@@ -58,7 +51,9 @@ public class StepPortraitActivity extends AppCompatActivity {
             Bundle  arguments = new Bundle();
 
             //pass the intent extras to the viewStepFragment
-            arguments.putParcelable(PARCELED_STEP,getIntent().getParcelableExtra(PARCELED_STEP));
+            arguments.putParcelable(PARCELED_STEP,step);
+            arguments.putParcelableArrayList(StepPortraitActivity.PARCELED_LIST,
+                    stepsList);
 
             viewStepFragment.setArguments(arguments);
             performFragmentTransaction(viewStepFragment);
@@ -66,39 +61,8 @@ public class StepPortraitActivity extends AppCompatActivity {
 
         }
 
-        setButtonClickListener();
 
 
-
-    }
-
-
-    private  void setButtonClickListener() {
-
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            ViewStepFragment mviewStepFragment = new ViewStepFragment();
-            Bundle bundle = new Bundle();
-            @Override
-            public void onClick(View view) {
-                if(currentPosition == 0) {
-                    bundle.putParcelable(StepPortraitActivity.PARCELED_STEP,
-                            stepsList.get(stepsList.size() - 1));
-                    mviewStepFragment.setArguments(bundle);
-                    performFragmentTransaction(mviewStepFragment);
-
-                }
-                else{
-                    bundle.putParcelable(StepPortraitActivity.PARCELED_STEP,
-                            stepsList.get(currentPosition - 1));
-                    mviewStepFragment.setArguments(bundle);
-                    --currentPosition;
-                    performFragmentTransaction(mviewStepFragment);
-
-
-                }
-
-            }
-        });
 
     }
 
@@ -109,11 +73,5 @@ public class StepPortraitActivity extends AppCompatActivity {
 
     }
 
-    private int getIndexOfStep(BakingSteps step) {
-        for(BakingSteps bakingStep : stepsList)  {
-            if(bakingStep.getId().equals(step.getId()))
-                return stepsList.indexOf(bakingStep);
-        }
-        return -1;
-    }
+
 }

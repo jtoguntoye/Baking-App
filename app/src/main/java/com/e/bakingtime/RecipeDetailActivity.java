@@ -76,6 +76,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
         if(mTwoPane){
             BakingSteps ClickedStep = (BakingSteps) bakingObject.get(position);
             Bundle arguments = new Bundle();
+            arguments.putBoolean("isTwopane",mTwoPane);
             arguments.putParcelable(StepPortraitActivity.PARCELED_STEP, ClickedStep);
             ViewStepFragment viewStepFragment = new ViewStepFragment();
             viewStepFragment.setArguments(arguments);
