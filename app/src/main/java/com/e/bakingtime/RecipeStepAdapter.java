@@ -28,7 +28,6 @@ class RecipeStepAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         dataSet = bakingObject;
         this.isTwoPane = mTwoPane;
         this.mStepClickHandler = stepClickHandler;
-        Log.d("dataSetsize", String.valueOf(dataSet.size()));
 
     }
 

@@ -9,7 +9,6 @@ import com.e.bakingtime.Model.BakingSteps;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +20,8 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
     public static final String PARCELED_RECIPE ="com.e.bakingtime.PARCELED_RECIPE";
     //create a recipe object to hold the recipe passed from the mainActivity
     private Recipes recipe;
-    private List<BakingSteps> recipeSteps;
+    private ArrayList<BakingSteps> recipeSteps;
+
     private List<RecipeIngredients> recipeIngredients;
     private ArrayList<Object> bakingObject;
     private boolean mTwoPane;
@@ -35,6 +35,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
 
 
         bakingObject = new ArrayList<>();
+        recipeSteps = new ArrayList<>();
 
         if(findViewById(R.id.item_detail_container)!=null){
             mTwoPane =true;
@@ -54,7 +55,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
         if(recipe!= null){
             this.setTitle(recipe.getRecipeName());
             recipeIngredients = recipe.getIngredients();
-            recipeSteps = recipe.getSteps();
+            recipeSteps = (ArrayList<BakingSteps>) recipe.getSteps();
             bakingObject.addAll(recipeIngredients);
             bakingObject.addAll(recipeSteps);
 
@@ -71,6 +72,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
 
     @Override
     public void onStepClickHandler(int position) {
+
         if(mTwoPane){
             BakingSteps ClickedStep = (BakingSteps) bakingObject.get(position);
             Bundle arguments = new Bundle();
@@ -85,6 +87,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
             BakingSteps clickedStep = (BakingSteps) bakingObject.get(position);
 
         Intent StepClickIntent = new Intent(this,StepPortraitActivity.class);
+            StepClickIntent.putParcelableArrayListExtra(StepPortraitActivity.PARCELED_LIST, recipeSteps);
         StepClickIntent.putExtra(StepPortraitActivity.PARCELED_STEP, clickedStep);
         StepClickIntent.putExtra(StepPortraitActivity.RECIPE_NAME,recipe.getRecipeName());
         startActivity(StepClickIntent);

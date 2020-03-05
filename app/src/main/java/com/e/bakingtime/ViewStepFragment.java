@@ -1,6 +1,5 @@
 package com.e.bakingtime;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,14 +25,9 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.exoplayer2.util.Util;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URI;
 import java.util.List;
-import java.util.Objects;
 
 
 public class ViewStepFragment extends Fragment {
@@ -64,8 +58,11 @@ private TextView descriptionView;
         step = bundle.getParcelable(StepPortraitActivity.PARCELED_STEP);
 
 
+
             description = step.getDescription();
             videoURl = step.getVideoURL();
+
+
 
 
      View StepsView = inflater.inflate(R.layout.fragment_view_recipe_step, container, false);
@@ -79,6 +76,7 @@ private TextView descriptionView;
 
         return StepsView;
     }
+
 
 
     private void initializePlayer(){
