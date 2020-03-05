@@ -23,8 +23,8 @@ public class StepPortraitActivity extends AppCompatActivity {
     private BakingSteps step;
     private ArrayList<BakingSteps> stepsList;
     private String recipeName;
-    private Button previousButton, nextButton;
-    private int currentPosition;
+    private  Button previousButton, nextButton;
+    private  int currentPosition;
     private ViewStepFragment viewStepFragment;
 
     @Override
@@ -72,7 +72,8 @@ public class StepPortraitActivity extends AppCompatActivity {
 
     }
 
-    private void setButtonClickListener() {
+
+    private  void setButtonClickListener() {
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             ViewStepFragment mviewStepFragment = new ViewStepFragment();
