@@ -1,7 +1,10 @@
 package com.e.bakingtime;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.e.bakingtime.Model.RecipeIngredients;
 import com.e.bakingtime.Model.Recipes;
@@ -25,6 +28,8 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
     private List<RecipeIngredients> recipeIngredients;
     private ArrayList<Object> bakingObject;
     private boolean mTwoPane;
+    private SharedPreferences mDesiredRecipePref;
+    private  String DesiredPref ="com.e.bakingtime.desiredRecipeSharedPref;";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,8 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        mDesiredRecipePref = getSharedPreferences(DesiredPref, MODE_PRIVATE);
 
         bakingObject = new ArrayList<>();
         recipeSteps = new ArrayList<>();
@@ -63,6 +70,30 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
 
     }
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.set_favorite_recipe, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_desired_recipe) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void setUpRecyclerView(RecyclerView detailRecyclerView) {
         detailRecyclerView.setHasFixedSize(true);
         detailRecyclerView.setLayoutManager(new LinearLayoutManager(this));

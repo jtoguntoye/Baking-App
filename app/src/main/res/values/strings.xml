@@ -8,4 +8,20 @@
     <string name="add_widget">Add widget</string>
     <string name="navigation_previous">Previous</string>
     <string name="navigation_next">Next</string>
+    <string name="desired_recipe">Set as Favorite</string>
+    <string name="title_collection_widget">Recipe - Ingredients</string>
+
+
+    <!-- Key name for storing the list of ingredients in SharedPreferences -->
+    <string name="pref_ingredient_list_key">pref_ingredient_list</string>
+    <!-- Key name for storing the recipe name in SharedPreferences -->
+    <string name="pref_recipe_name_key">pref_recipe_name</string>
+    <!-- Key name for storing the recipe id in SharedPreferences -->
+    <string name="pref_recipe_id_key">pref_recipe_id</string>
+    <!-- Key name for storing the list of steps in SharedPreferences -->
+    <string name="pref_step_list_key">pref_step_list</string>
+    <!-- Key name for storing servings in SharedPreferences -->
+    <string name="pref_servings_key">pref_servings</string>
+    <!-- Key name for storing the image URL in SharedPreferences -->
+    <string name="pref_image_key">pref_image</string>
 </resources>
