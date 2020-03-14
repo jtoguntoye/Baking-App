@@ -3,23 +3,20 @@ package com.e.bakingtime;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.e.bakingtime.Model.BakingSteps;
 import com.e.bakingtime.Model.RecipeIngredients;
 import com.e.bakingtime.Model.Recipes;
 import com.e.bakingtime.RemoteViews.IngredientsRemoteViewService;
+import com.e.bakingtime.Utils.Utils;
 
 import java.util.List;
-import java.util.prefs.Preferences;
 
 /**
  * Implementation of App Widget functionality.
@@ -113,6 +110,7 @@ public class BakingAppWidget extends AppWidgetProvider {
             views.setRemoteAdapter(R.id.widgetListView, ServiceIntent);
 
             appWidgetManager.updateAppWidget(appWidgetId, views);
+
 
             updateAppWidget(context,appWidgetManager,appWidgetId);
             // Trigger data update to handle the ListView widgets and force a data refresh

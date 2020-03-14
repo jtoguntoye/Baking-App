@@ -6,24 +6,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.e.bakingtime.Model.RecipeIngredients;
 import com.e.bakingtime.Model.Recipes;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.e.bakingtime.Utils.EspressoIdlingResource;
+import com.e.bakingtime.Utils.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,12 +59,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
 
     private void getRecipes(){
 
+        EspressoIdlingResource.increment();
         mainActivityModel.getRecipes().observe(this, (List<Recipes> recipesList) -> {
             mainActivityAdapter.setAdapter(recipesList);
             mRecipesList = recipesList;
             Log.d("Recipe size:", String.valueOf((mRecipesList.size())));
 
         });
+        EspressoIdlingResource.decrement();
     }
 
     private int numOfColumns() {

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RecipeDetailActivity extends AppCompatActivity implements RecipeStepAdapter.StepClickHandler{
 
@@ -37,7 +38,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
         setContentView(R.layout.activity_recipe_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mDesiredRecipePref = getSharedPreferences(DesiredPref, MODE_PRIVATE);
 
@@ -75,25 +76,13 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeSte
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.set_favorite_recipe, menu);
+        //getMenuInflater().inflate(R.menu.set_favorite_recipe, menu);
         return true;
     }
 
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_desired_recipe) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
     private void setUpRecyclerView(RecyclerView detailRecyclerView) {
         detailRecyclerView.setHasFixedSize(true);
         detailRecyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -58,23 +58,25 @@ private Button previousButton, nextButton;
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         Bundle bundle = this.getArguments();
-        assert bundle != null;
+
         step = bundle.getParcelable(StepPortraitActivity.PARCELED_STEP);
         stepsList = bundle.getParcelableArrayList(StepPortraitActivity.PARCELED_LIST);
 
-        description = step.getDescription();
-        videoURl = step.getVideoURL();
+
+            description = step.getDescription();
+            videoURl = step.getVideoURL();
+
 
         if(stepsList!=null){
             currentPosition = getIndexOfStep(step);
             Log.d("Position", String.valueOf(currentPosition));
         }
         isTablet = bundle.getBoolean("isTwopane");
-
 
 
 

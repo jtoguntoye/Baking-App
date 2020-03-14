@@ -3,17 +3,12 @@ package com.e.bakingtime.RemoteViews;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import androidx.lifecycle.LiveData;
-
-import com.e.bakingtime.MainActivityModel;
 import com.e.bakingtime.Model.RecipeIngredients;
 import com.e.bakingtime.R;
-import com.e.bakingtime.RecipeRepository;
-import com.e.bakingtime.Utils;
+import com.e.bakingtime.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +20,7 @@ public class IngredientsRemoteViewsFactory implements RemoteViewsService.RemoteV
 
     public IngredientsRemoteViewsFactory(Context context) {
         this.context = context;
-        recipeIngredientsList = new ArrayList<>();
+       recipeIngredientsList = new ArrayList<>();
 
     }
 
@@ -63,9 +58,9 @@ public class IngredientsRemoteViewsFactory implements RemoteViewsService.RemoteV
         if (recipeIngredientsList== null || recipeIngredientsList.size()==0) {
             return null;
         }
-
+            RecipeIngredients ingredient =recipeIngredientsList.get(position);
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget_list_item);
-        rv.setTextViewText(R.id.widgetItemNameLabel, recipeIngredientsList.get(position).getIngredientName());
+        rv.setTextViewText(R.id.widgetItemNameLabel, ingredient.getIngredientName());
 
     return rv;
     }

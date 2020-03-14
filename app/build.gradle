@@ -29,12 +29,30 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.1.0'
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.2') {
+        // Necessary to avoid version conflicts
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
+
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support:support-annotations:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:core:1.2.0'
+
+    //Espresso idling resource dependency
+    implementation "androidx.test.espresso:espresso-idling-resource:3.2.0"
+
+    debugImplementation "androidx.fragment:fragment-testing:1.2.2"
 
     implementation 'com.google.android.exoplayer:exoplayer:r2.2.0'
     implementation 'com.android.support:recyclerview-v7:29.0.0'
+
     //Adding Retrofit and Gson dependency
     implementation 'com.squareup.retrofit2:retrofit:2.7.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.0'

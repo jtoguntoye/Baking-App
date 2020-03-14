@@ -1,4 +1,4 @@
-package com.e.bakingtime;
+package com.e.bakingtime.Utils;
 
 import com.e.bakingtime.Model.BakingSteps;
 import com.e.bakingtime.Model.RecipeIngredients;
